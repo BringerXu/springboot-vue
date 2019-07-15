@@ -9,15 +9,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path:'/',
+      name: 'login',
+      component: Login
+    },
+    {
       path: '/backstage',
       name: 'backstage',
       component: Backstage
     },
-    {
-      path:'/',
-      name: 'login',
-      component: Login
-    }
+    
     // {
     //   path: '/about',
     //   name: 'about',

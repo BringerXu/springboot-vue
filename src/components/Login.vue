@@ -34,7 +34,7 @@ export default {
             this.$axios.post("http://127.0.0.1:8080/login", form)
                 .then((response) => 
                 {
-                    response.data? this.$router.push('backstage'):false;
+                    response.data? this.$router.push('backstage'):this.$router.push('/');
                 }).catch(function (response){
                     window.console.log(response)
                 });

@@ -6,13 +6,9 @@
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
-import Backstage from '@/components/Backstage.vue'
 
 export default {
   name: 'app',
-  components: {
-  }
 }
 </script>
 
