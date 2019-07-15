@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import './plugins/axios'
-import App from './App.vue'
+import App from './views/App.vue'
 import router from './router'
+import './plugins/axios'
 import './plugins/element.js'
 
 Vue.config.productionTip = false
