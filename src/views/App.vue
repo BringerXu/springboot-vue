@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <router-view>
-    </router-view>
+    <transition name="slide-left">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -12,13 +13,30 @@ export default {
 }
 </script>
 
-<style>
+<style >
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  box-sizing: border-box;
+  padding:0;
+  margin:0;
+}
+
+
+/* router view 转场动画 */
+.slide-left-enter{
+    opacity:0;
+    transform: translate3d(100%,0,0)
+}
+
+.slide-left-enter-active{
+    transition: all 300ms  
+}
+
+.slide-left-leave-to{
+    opacity:0;
+    transition: translate3d(-100%,0,0)  
 }
 </style>

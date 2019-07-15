@@ -31,7 +31,6 @@ export default {
             Table:[],
             name:"",
             password:"",
-            Loading:true
         }
         
     },
