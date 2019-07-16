@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide-left">
-      <router-view></router-view>
-    </transition>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -22,23 +20,5 @@ export default {
   color: #2c3e50;
   padding:0;
   margin:0;
-  height:100%;
-  width:100%;
 }
 
-
-/* router view 转场动画 */
-.slide-left-enter{
-    opacity:0;
-    transform: translate3d(100%,0,0)
-}
-
-.slide-left-enter-active{
-    transition: all 300ms  
-}
-
-.slide-left-leave-to{
-    opacity:0;
-    transition: translate3d(-100%,0,0)  
-}
-</style>

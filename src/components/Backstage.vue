@@ -1,47 +1,36 @@
 <template>
     <div id="Backstage">
-        <div>
-            {{Table}}
-            <button @click="login">
-                click
-            </button>
-        </div>
-
-        <div>
-            <button @click="adduser">
-                click2
-            </button>
-        </div>
-
-        <div>
-            <button @click="removeuser">
-                click3
-            </button>
-        </div>
+        <el-container>
+            <el-header>
+            </el-header>
+            <el-container>
+                <el-aside>
+                    aside
+                </el-aside>
+                <el-main>
+                    <DataTable/>
+                </el-main>
+            </el-container>
+            <el-footer></el-footer>
+        </el-container>
     </div>
 </template>
 
 <script>
+import DataTable from '@/components/DataTable.vue'
 export default {
     name: 'Backstage',
+    components:{
+        DataTable
+    },
     data(){
         return {
-            Table:[],
             name:"",
             password:"",
         }
         
     },
     methods:{
-        login(){
-            this.$axios.get("http://127.0.0.1:8080")
-                .then((response) => {
-                    // this.type_options = response.data;
-                    this.Table = response.data;
-                }).catch(function (response) {
-                window.console.log(response)
-            });
-        },
         adduser(){
             let form =  new FormData();
             form.append('name','la');

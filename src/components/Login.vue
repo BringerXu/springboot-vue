@@ -12,7 +12,7 @@
                     </div>
                     <div id="cardFooter">
                         <el-button id=loginBtn :round=true @click="login">登录</el-button>
-                    </div>    
+                    </div>
                 </el-card>
             </el-main>
         </el-container>
