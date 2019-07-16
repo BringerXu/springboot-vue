@@ -1,5 +1,6 @@
 package com.bx.springvue.Controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bx.springvue.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,8 @@ public class User {
     private UserService userService;
 
     @RequestMapping(value="", method=RequestMethod.GET)
-    public String index(){
-        return userService.findAll().toString();
+    public JSONArray index(){
+        return userService.findAll();
     }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)

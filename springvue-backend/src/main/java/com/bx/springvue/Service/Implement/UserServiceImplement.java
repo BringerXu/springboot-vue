@@ -1,5 +1,7 @@
 package com.bx.springvue.Service.Implement;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.bx.springvue.Entity.UserEntity;
 import com.bx.springvue.Mapper.DataMapper;
 import com.bx.springvue.Service.UserService;
@@ -13,8 +15,10 @@ public class UserServiceImplement implements UserService {
     private DataMapper dataMapper;
 
     @Override
-    public List<UserEntity> findAll() {
-        return dataMapper.findAll();
+    public JSONArray findAll() {
+        List<UserEntity> t = dataMapper.findAll();
+        JSONArray a = JSONArray.parseArray(JSON.toJSONString(t));
+        return a;
     }
 
     @Override

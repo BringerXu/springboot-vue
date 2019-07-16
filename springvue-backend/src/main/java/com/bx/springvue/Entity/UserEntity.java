@@ -22,9 +22,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "{name:" + name +
+                ", password:" + password +'}';
     }
 }
