@@ -26,8 +26,6 @@ export default {
     name: 'Backstage',
     data(){
         return {
-            username:"",
-            userpassword:"",
             Table:[],
             name:"",
             password:"",

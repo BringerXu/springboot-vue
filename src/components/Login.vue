@@ -7,18 +7,16 @@
                         <span>单兵设备管理系统</span>
                     </div>
                     <div id="inputbox">
-                        <el-input v-model="name" placeholder="请输入内容"></el-input>
-                        <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
+                        <span class="el-icon-user"></span><el-input v-model="name" placeholder="请输入内容"></el-input><br>    
+                        <span class="el-icon-lock"></span><el-input placeholder="请输入密码" v-model="password" show-password></el-input>
                     </div>
                     <div id="cardFooter">
                         <el-button id=loginBtn :round=true @click="login">登录</el-button>
-                    </div>
-                    
+                    </div>    
                 </el-card>
             </el-main>
         </el-container>
-        <img id="loginBg" src="../assets/bg01v2.jpg" alt="">
-    </div>    
+    </div>
 </template>
 
 <script>
@@ -54,6 +52,9 @@ export default {
 {
     margin:0;
     padding:0;
+    background-color:#0F7DCC;
+    height: 100%;
+    width: 100%;
 }
 
 #loginBg
@@ -80,21 +81,24 @@ export default {
     color: #fff;
 }
 
+#login > section > main{
+    padding:0;
+}
+
 #logincard{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     position: absolute;
     text-align: center;
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     overflow: hidden;
-    background-image: url(../assets/bg02.jpg)
-}
-
-#inputbox{
-    position: absolute;
+    background: #5AA8DD;
+    border: none;
+    box-shadow: 0px 0px 8px rgb(49, 151, 219);
+    opacity: 70%;
 }
 
 #inputbox > div{
@@ -103,11 +107,33 @@ export default {
     text-align: center;
     margin: 5px;
 }
-
+#inputbox > div > input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
 #cardFooter{
     position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform:translate(-50%)
+    bottom: 2%;
+    left: 0%;
+    width: 100%;
+}
+
+#loginBtn
+{
+    width:80%;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #0F7DCC;
+    border: none;
+    color:white;
+}
+
+#loginBtn:hover
+{
+    font-size: 22px;
+    border: 1px solid #0F7DCC;
+
 }
 </style>
