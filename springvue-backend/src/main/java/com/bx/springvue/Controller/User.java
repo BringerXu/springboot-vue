@@ -1,6 +1,7 @@
 package com.bx.springvue.Controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.bx.springvue.Service.TokenService;
 import com.bx.springvue.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,21 @@ public class User {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenService tokenService;
+
     @GetMapping(value="")
     public JSONArray index(){
         return userService.findAll();
     }
 
     @PostMapping(value="/login")
-    public boolean login(String name, String password){
-        return userService.getUserpswbyname(name).equals(password);
+    public String login(String name, String password){
+        if(userService.getUserpswbyname(name).equals(password)){
+            return tokenService.getToken(name, password);
+        }else {
+            return "Error";
+        }
     }
 
     @PostMapping(value="/add")
