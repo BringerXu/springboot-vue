@@ -34,8 +34,13 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public void deleteUserbyname(String name) {
-        dataMapper.deleteUserbyname(name);
+    public boolean deleteUserbyname(String name) {
+        if(name==null){
+            return false;
+        }else{
+            dataMapper.deleteUserbyname(name);
+            return true;
+        }
     }
 
     @Override

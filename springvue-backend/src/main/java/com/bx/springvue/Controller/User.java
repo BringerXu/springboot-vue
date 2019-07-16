@@ -6,32 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //@ResponseBody
-//@RestController == @RestController
+//@Controller == @RestController
 @CrossOrigin
 @RestController
 public class User {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="", method=RequestMethod.GET)
+    @GetMapping(value="")
     public JSONArray index(){
         return userService.findAll();
     }
 
-    @RequestMapping(value="/login", method=RequestMethod.POST)
+    @PostMapping(value="/login")
     public boolean login(String name, String password){
         return userService.getUserpswbyname(name).equals(password);
     }
 
-    @RequestMapping(value="/add",method=RequestMethod.POST)
+    @PostMapping(value="/add")
     public boolean addUser(String name, String password){
         return userService.addUser(name, password);
     }
 
-    @RequestMapping(value="/remove",method=RequestMethod.POST)
-    public String removeUser(String name){
-        userService.deleteUserbyname(name);
-        return userService.findAll().toString();
+    @PostMapping(value="/remove")
+    public boolean removeUser(String name){
+        return userService.deleteUserbyname(name);
     }
 
 }

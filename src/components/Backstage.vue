@@ -5,9 +5,10 @@
             </el-header>
             <el-container>
                 <el-aside>
-                    aside
+                    <AsideBar/>
                 </el-aside>
                 <el-main>
+                    <SearchBar/>
                     <DataTable/>
                 </el-main>
             </el-container>
@@ -18,49 +19,15 @@
 
 <script>
 import DataTable from '@/components/DataTable.vue'
+import AsideBar from '@/components/AsideBar.vue'
+import SearchBar from '@/components/SearchBar.vue'
 export default {
     name: 'Backstage',
     components:{
+        AsideBar,
+        SearchBar,
         DataTable
     },
-    data(){
-        return {
-            name:"",
-            password:"",
-        }
-        
-    },
-    methods:{
-        adduser(){
-            let form =  new FormData();
-            form.append('name','la');
-            form.append('password','181818');
-            this.$axios.post("http://127.0.0.1:8080/add", form)
-                .then((response) => {
-                    // this.type_options = response.data;
-                    if (response.data==true)
-                    {
-                        this.login()
-                    }
-                }).catch(function (response) {
-                window.console.log(response)
-            });
-        },
-        removeuser(){
-            let form =  new FormData();
-            form.append('name','la');
-            this.$axios.post("http://127.0.0.1:8080/remove", form)
-                .then((response) => {
-                    // this.type_options = response.data;
-                    if (response.data==true)
-                    {
-                        this.login()
-                    }
-                }).catch(function (response) {
-                window.console.log(response)
-            });
-        }
-    }
 }
 </script>
 
