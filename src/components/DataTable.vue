@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import {globalbus} from './globalbus';
 export default {
     name:"dataTable",
     data(){
@@ -23,14 +24,20 @@ export default {
         }
     },
     methods:{
-
+        getData(){
+            this.$axios.get("http://127.0.0.1:8080")
+            .then((response) => {
+                this.tableData = response.data;    
+            }).catch(function (response) {
+                window.console.log(response)
+            });
+        }
     },
     mounted(){
-        this.$axios.get("http://127.0.0.1:8080")
-        .then((response) => {
-            this.tableData = response.data;
-        }).catch(function (response) {
-            window.console.log(response)
+        this.getData();
+        globalbus.$on('datachanged', (a) => {
+            window.console.log(a);
+            this.getData();
         });
     }
 }

@@ -8,8 +8,8 @@
                     <AsideBar/>
                 </el-aside>
                 <el-main>
-                    <SearchBar/>
-                    <DataTable/>
+                    <SearchBar ref="searchBar"/>
+                    <DataTable ref="dataTable"/>
                 </el-main>
             </el-container>
             <el-footer></el-footer>

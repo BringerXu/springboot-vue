@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import {globalbus} from './globalbus';
 export default {
     name:"searchBar",
     data(){
@@ -24,6 +25,11 @@ export default {
         }
     },
     methods:{
+        clearInput(){
+            this.name='';
+            this.password='',
+            this.d_name=''
+        },
         addUser(){
             let form =  new FormData();
             form.append('name',this.name);
@@ -33,8 +39,10 @@ export default {
                     // this.type_options = response.data;
                     if (response.data==true)
                     {
-                        window.console.log("success");
+                        window.console.log("success");     
+                        globalbus.$emit('datachanged', 'user added')
                     }
+                    this.clearInput();
                 }).catch(function (response) {
                 window.console.log(response)
             });
@@ -48,7 +56,9 @@ export default {
                     if (response.data==true)
                     {
                         window.console.log("success");
+                        globalbus.$emit('datachanged', 'user removed')
                     }
+                    this.clearInput();
                 }).catch(function (response) {
                 window.console.log(response)
             });
