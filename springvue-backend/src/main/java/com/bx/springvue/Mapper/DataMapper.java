@@ -19,6 +19,8 @@ public interface DataMapper {
     @Delete("delete from user where name=#{name}")
     void deleteUserbyname(@Param("name") String name);
 
+    @Update("update user set token = #{token} where name = #{name}")
+    void updateToken(@Param("name") String name, @Param("token") String token);
 
     //Device Method
 }

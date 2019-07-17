@@ -53,5 +53,10 @@ public class UserServiceImplement implements UserService {
         return dataMapper.getUserpswbyname(name);
     }
 
+    @Override
+    public void updateToken(String name, String token) {
+        dataMapper.updateToken(name, token);
+    }
+
 
 }
