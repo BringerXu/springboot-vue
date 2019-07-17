@@ -13,7 +13,6 @@
                     <div id="cardFooter">
                         <el-button id=loginBtn :round=true @click="login">登录</el-button>
                     </div>
-                    {{token}}
                 </el-card>
             </el-main>
         </el-container>
@@ -28,7 +27,6 @@ export default {
         return{
             name:"",
             password:"",
-            token:"",
         }
     },
     methods:{
@@ -40,8 +38,8 @@ export default {
             this.$axios.post("http://127.0.0.1:8080/login", form)
                 .then((response) => 
                 {
-                    this.token = response.data;
-                    // this.$router.push('backstage');
+                    sessionStorage.setItem("token", response.data);
+                    this.$router.push('backstage');
                 }).catch(function (response){
                     window.console.log(response)
                 });

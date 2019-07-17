@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from './views/App.vue'
 import Backstage from './components/Backstage.vue'
 import Login from './components/Login.vue'
 

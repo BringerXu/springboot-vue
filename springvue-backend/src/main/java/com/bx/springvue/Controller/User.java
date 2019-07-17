@@ -29,7 +29,7 @@ public class User {
     @PostMapping(value="/login")
     public String login(String name, String password){
         if(userService.getUserpswbyname(name).equals(password)){
-            String t = tokenService.getToken(name, password);
+            String t = tokenService.genToken(name);
             userService.updateToken(name, t);
             return t;
         }else {
