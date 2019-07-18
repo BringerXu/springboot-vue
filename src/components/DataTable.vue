@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         getData(){
-            this.$axios.get("http://127.0.0.1:8080")
+            this.$axios.get()
             .then((response) => {
                 this.tableData = response.data;    
             }).catch(function (response) {

@@ -34,7 +34,7 @@ export default {
             let form =  new FormData();
             form.append('name',this.name);
             form.append('password',this.password);
-            this.$axios.post("http://127.0.0.1:8080/add", form)
+            this.$axios.post("/add", form)
                 .then((response) => {
                     // this.type_options = response.data;
                     if (response.data==true)
@@ -50,7 +50,7 @@ export default {
         removeUser(){
             let form =  new FormData();
             form.append('name', this.d_name);
-            this.$axios.post("http://127.0.0.1:8080/remove", form)
+            this.$axios.post("/remove", form)
                 .then((response) => {
                     // this.type_options = response.data;
                     if (response.data==true)

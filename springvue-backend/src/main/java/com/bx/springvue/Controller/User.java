@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 //@ResponseBody
 //@Controller == @RestController
 @CrossOrigin
@@ -31,12 +34,13 @@ public class User {
     }
 
     @PostMapping(value="/login")
-    public ResponseEntity<String> login(String name, String password){
+    public ResponseEntity<String> login(String name, String password, HttpServletRequest request){
         HttpHeaders headers = new HttpHeaders();
         if(userService.getUserpswbyname(name).equals(password)){
+            HttpSession session = request.getSession(true);
             String t = tokenService.genToken(name);
-            logger.info("token" + t);
-            userService.updateToken(name, t);
+            session.setAttribute("token", t);
+            logger.info("token:  " + t);
             headers.add("token", t);
             return ResponseEntity.status(200).headers(headers).body("");
         }else {

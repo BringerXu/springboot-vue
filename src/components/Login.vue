@@ -35,7 +35,7 @@ export default {
             let form =  new FormData();
             form.append("name", this.name)
             form.append("password", this.password)
-            this.$axios.post("http://127.0.0.1:8080/login", form)
+            this.$axios.post("/login", form)
                 .then((response) => 
                 {
                     window.console.log(response);
