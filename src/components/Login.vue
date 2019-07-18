@@ -38,10 +38,11 @@ export default {
             this.$axios.post("http://127.0.0.1:8080/login", form)
                 .then((response) => 
                 {
-                    sessionStorage.setItem("token", response.data);
+                    window.console.log(response);
+                    window.sessionStorage.setItem("token", response.headers.token)
                     this.$router.push('backstage');
                 }).catch(function (response){
-                    window.console.log(response)
+                    window.console.log(response);
                 });
         }
     }

@@ -3,7 +3,11 @@ package com.bx.springvue.Controller;
 import com.alibaba.fastjson.JSONArray;
 import com.bx.springvue.Service.TokenService;
 import com.bx.springvue.Service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class User {
-
+    Logger logger = LoggerFactory.getLogger(User.class);
     @Autowired
     private UserService userService;
 
@@ -27,13 +31,16 @@ public class User {
     }
 
     @PostMapping(value="/login")
-    public String login(String name, String password){
+    public ResponseEntity<String> login(String name, String password){
+        HttpHeaders headers = new HttpHeaders();
         if(userService.getUserpswbyname(name).equals(password)){
             String t = tokenService.genToken(name);
+            logger.info("token" + t);
             userService.updateToken(name, t);
-            return t;
+            headers.add("token", t);
+            return ResponseEntity.status(200).headers(headers).body("");
         }else {
-            return "Error";
+            return ResponseEntity.status(403).headers(headers).body("");
         }
     }
 

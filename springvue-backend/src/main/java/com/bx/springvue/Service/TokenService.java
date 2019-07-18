@@ -15,7 +15,7 @@ public class TokenService {
     public String genToken(String name) {
         String token="";
         token= JWT.create()
-                .withClaim("name", name)
+                .withIssuer(name)
                 .withExpiresAt(date)
                 .sign(Algorithm.HMAC256(key));// 以 key 作为 token 的密钥
         return token;
