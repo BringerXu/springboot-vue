@@ -2,6 +2,8 @@
 
 import Vue from 'vue';
 import axios from "axios";
+import router from '../router';
+const jwt = require('jsonwebtoken');
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -15,7 +17,7 @@ let config = {
     baseURL:"http://localhost:8080",
     headers:
     {
-      'token':window.sessionStorage.getItem('token')
+      'token':''
     }
 };
 
@@ -24,6 +26,12 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
+    let t = window.sessionStorage.getItem('token')
+    if(jwt.verify(t,"vFg8z&L0t*y6rhQnWBWyMIRQCfWnS9wCa6yZcvMLpJphD$5AIdkPCnVmsAIO7ED0HgUoERR7iPxlrG!LMqd@C07FkleE4VpsMcG")){
+      config.headers['token'] = t;
+    }else{
+      return 401;
+    }
     return config;
   },
   function(error) {
@@ -36,10 +44,15 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   function(response) {
     // Do something with response data
-    return response;
+      return response;
   },
   function(error) {
     // Do something with response error
+    switch(error.status)
+    {
+      case 401:
+        router.push('');
+    }
     return Promise.reject(error);
   }
 );
