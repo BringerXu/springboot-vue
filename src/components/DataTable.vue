@@ -17,12 +17,13 @@
                 <el-button @click="removeUser(scope.row)">
                     Remove
                 </el-button>
-                <el-button @click="UpdateUser(scope.row)">
-                    Update
-                </el-button>
             </template>
         </el-table-column>
     </el-table>
+    <el-pagination @current-change="handleCurrentChange"
+        :current-page.sync="currentPage" :page-size="pagesize" layout=" prev, pager, next,total"
+        :total="totalnum" background >
+    </el-pagination>
 </div>
 </template>
 
@@ -32,7 +33,10 @@ export default {
     name:"dataTable",
     data(){
         return {
-            tableData:[]
+            tableData:[],
+            currentPage:1,
+            pagesize:10,
+            totalnum:100
         }
     },
     methods:{
@@ -58,9 +62,18 @@ export default {
                 window.console.log(response)
             });
         },
-        UpdateUser(row){
-
-        }
+        handleCurrentChange(val) {
+            this.currentPage = val;
+            let form = new FormData();
+            form.append('pageNum', val)
+            form.append('pageSize', this.pagesize)
+            this.$axios.post("", form)
+            .then((response) => {
+                this.tableData = response.data;    
+            }).catch(function (response) {
+                window.console.log(response)
+            });
+		},
     },
     mounted(){
         this.getData();
