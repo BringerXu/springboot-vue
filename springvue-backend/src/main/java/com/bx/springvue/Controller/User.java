@@ -41,7 +41,7 @@ public class User {
 
     @GetMapping(value="")
     public JSONArray index(){
-        return userService.findAll();
+        return userService.getpart(1,1);
     }
 
     @PostMapping(value="/add")

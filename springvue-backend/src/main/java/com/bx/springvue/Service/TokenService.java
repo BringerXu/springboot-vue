@@ -8,7 +8,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import java.util.Date;
 
 public class TokenService {
-    private static final long EXPIRE_DATE=1*60*1000;
+    private static final long EXPIRE_DATE=30*60*1000;
 //    private static String publicKey = "vFg8z&L0t*y6rhQnWBWyMIRQCfWnS9wCa6yZcvMLpJphD$5AIdkPCnVmsAIO7ED0HgUoERR7iPxlrG!LMqd@C07FkleE4VpsMcG";
     private static String key = "";
 

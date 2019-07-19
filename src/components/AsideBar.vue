@@ -59,5 +59,8 @@ export default {
 </script>
 
 <style>
-
+#asideBar{
+  border-right: 1px solid black;
+  height: 100%;
+}
 </style>
