@@ -1,6 +1,7 @@
 package com.bx.springvue.Controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.auth0.jwt.JWTCreator;
 import com.bx.springvue.Service.TokenService;
 import com.bx.springvue.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +27,21 @@ public class User {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping(value="")
-    public JSONArray index(){
-        return userService.findAll();
-    }
-
     @PostMapping(value="/login")
     public ResponseEntity<String> login(String name, String password, HttpServletRequest request){
         HttpHeaders headers = new HttpHeaders();
         if(userService.getUserpswbyname(name).equals(password)){
-            String t = tokenService.genToken(name);
+            String t = tokenService.genToken(name, password);
             headers.add("token", t);
             return ResponseEntity.status(200).headers(headers).body("");
         }else {
             return ResponseEntity.status(403).headers(headers).body("");
         }
+    }
+
+    @GetMapping(value="")
+    public JSONArray index(){
+        return userService.findAll();
     }
 
     @PostMapping(value="/add")

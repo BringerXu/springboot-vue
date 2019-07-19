@@ -38,7 +38,6 @@ public class RequestAspect {
         }else{
             String t = request.getHeader("token");
             if(TokenService.verifyToken(t)){
-
             }else{
                 throw new TokenException("Unauthorized token");
             }

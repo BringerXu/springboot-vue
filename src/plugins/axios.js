@@ -26,16 +26,19 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
-    let t = window.sessionStorage.getItem('token')
-    if(jwt.verify(t,"vFg8z&L0t*y6rhQnWBWyMIRQCfWnS9wCa6yZcvMLpJphD$5AIdkPCnVmsAIO7ED0HgUoERR7iPxlrG!LMqd@C07FkleE4VpsMcG")){
-      config.headers['token'] = t;
+    if(config.url == '/login'){
+      return config;
     }else{
-      return 401;
+      let t = window.sessionStorage.getItem('token');
+      jwt.decode(t);
+      config.headers['token'] = t;
+      return config;
     }
-    return config;
   },
   function(error) {
     // Do something with request error
+    window.sessionStorage.setItem('token', '');
+    router.push('/');
     return Promise.reject(error);
   }
 );
@@ -48,11 +51,8 @@ _axios.interceptors.response.use(
   },
   function(error) {
     // Do something with response error
-    switch(error.status)
-    {
-      case 401:
-        router.push('');
-    }
+    window.sessionStorage.setItem('token', '');
+    router.push('/');
     return Promise.reject(error);
   }
 );
