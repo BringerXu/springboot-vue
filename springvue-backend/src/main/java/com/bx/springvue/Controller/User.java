@@ -41,7 +41,12 @@ public class User {
 
     @GetMapping(value="")
     public JSONArray index(){
-        return userService.getpart(1,1);
+        return userService.findpart(0,10);
+    }
+
+    @PostMapping(value="")
+    public JSONArray page(int pageNum, int pageSize){
+        return userService.findpart(pageNum,pageSize);
     }
 
     @PostMapping(value="/add")

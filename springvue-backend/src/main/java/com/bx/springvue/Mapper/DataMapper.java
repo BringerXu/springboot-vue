@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface DataMapper {
     //User Method
-    @Select("select * from user")
-    List<UserEntity> findAll();
-
     @Select("select password from user where name=#{name}")
     String getUserpswbyname(@Param("name") String name);
 
@@ -18,5 +15,8 @@ public interface DataMapper {
 
     @Delete("delete from user where name=#{name}")
     void deleteUserbyname(@Param("name") String name);
+
+    @Select("select * from user order by name limit #{pageNum},#{pageSize}")
+    List<UserEntity> findpart(@Param("pageNum") int pn, @Param("pageSize") int ps);
     //Device Method
 }

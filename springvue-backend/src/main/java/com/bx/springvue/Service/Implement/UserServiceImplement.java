@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.bx.springvue.Entity.UserEntity;
 import com.bx.springvue.Mapper.DataMapper;
-import com.bx.springvue.Mapper.fastMapper;
 import com.bx.springvue.Service.UserService;
-import com.gitee.fastmybatis.core.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -15,16 +13,6 @@ import java.util.List;
 public class UserServiceImplement implements UserService {
     @Autowired
     private DataMapper dataMapper;
-
-    @Autowired
-    private fastMapper fm;
-
-    @Override
-    public JSONArray findAll() {
-        List<UserEntity> t = dataMapper.findAll();
-        JSONArray a = JSONArray.parseArray(JSON.toJSONString(t));
-        return a;
-    }
 
     @Override
     public boolean addUser(String name, String password) {
@@ -59,10 +47,9 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public JSONArray getpart(int pageNum, int pageSize) {
-        Query query = new Query().page(pageNum, pageSize);
-        List<UserEntity> userlist = fm.list(query);
-        JSONArray a = JSONArray.parseArray(userlist.toString());
+    public JSONArray findpart(int pn, int ps){
+        List<UserEntity> t = dataMapper.findpart(pn*ps-1, ps);
+        JSONArray a = JSONArray.parseArray(JSON.toJSONString(t));
         return a;
     }
 
