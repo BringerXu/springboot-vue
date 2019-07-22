@@ -11,10 +11,10 @@ public interface DataMapper {
     String getUserpswbyname(@Param("name") String name);
 
     @Insert("insert into user (name, password) values (#{name},#{password})")
-    void addUser(@Param("name") String name, @Param("password") String password);
+    Integer addUser(@Param("name") String name, @Param("password") String password);
 
     @Delete("delete from user where name=#{name}")
-    void deleteUserbyname(@Param("name") String name);
+    Integer deleteUserbyname(@Param("name") String name);
 
     @Select("select * from user order by ${key} limit #{pageNum},#{pageSize}")
     List<UserEntity> findpart(@Param("key") String k, @Param("pageNum") int pn, @Param("pageSize") int ps);

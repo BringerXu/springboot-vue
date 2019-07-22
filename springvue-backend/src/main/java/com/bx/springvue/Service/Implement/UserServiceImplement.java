@@ -8,7 +8,6 @@ import com.bx.springvue.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Map;
 
 
 public class UserServiceImplement implements UserService {
@@ -22,7 +21,14 @@ public class UserServiceImplement implements UserService {
         {
             return false;
         }else{
-            dataMapper.addUser(name, password);
+            try{
+                Integer i = dataMapper.addUser(name, password);
+                if(i!=0){
+                    dataMapper.increaseUserNum();
+                }
+            }catch(Exception e){
+                return false;
+            }
             return true;
         }
     }
@@ -32,9 +38,12 @@ public class UserServiceImplement implements UserService {
         if(name==null){
             return false;
         }else{
-            dataMapper.deleteUserbyname(name);
+            if ((dataMapper.deleteUserbyname(name) != 0)) {
+                dataMapper.decreaseUserNum();
+            }
             return true;
         }
+
     }
 
     @Override
