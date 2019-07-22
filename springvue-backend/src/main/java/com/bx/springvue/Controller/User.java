@@ -1,9 +1,10 @@
 package com.bx.springvue.Controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.auth0.jwt.JWTCreator;
 import com.bx.springvue.Service.TokenService;
 import com.bx.springvue.Service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin
 @RestController
 public class User {
-//    Logger logger = LoggerFactory.getLogger(User.class);
+    Logger logger = LoggerFactory.getLogger(User.class);
 
     @Autowired
     private UserService userService;
@@ -39,9 +40,14 @@ public class User {
         }
     }
 
+//    @GetMapping(value="")
+//    public JSONArray index(){
+//        return userService.findpart(1,10);
+//    }
+
     @GetMapping(value="")
-    public JSONArray index(){
-        return userService.findpart(0,10);
+    public Integer total(){
+        return userService.getTotal();
     }
 
     @PostMapping(value="")

@@ -8,6 +8,7 @@ import com.bx.springvue.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class UserServiceImplement implements UserService {
@@ -48,9 +49,14 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public JSONArray findpart(int pn, int ps){
-        List<UserEntity> t = dataMapper.findpart(pn*ps-1, ps);
+        List<UserEntity> t = dataMapper.findpart("name",(pn-1)*ps, ps);
         JSONArray a = JSONArray.parseArray(JSON.toJSONString(t));
         return a;
+    }
+
+    @Override
+    public Integer getTotal(){
+        return dataMapper.getUserNum();
     }
 
 

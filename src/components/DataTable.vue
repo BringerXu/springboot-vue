@@ -36,18 +36,37 @@ export default {
             tableData:[],
             currentPage:1,
             pagesize:10,
-            totalnum:100
+            totalnum:0
         }
     },
     methods:{
         getData(){
+            this.getTotal();
+            this.getTable(1);
+        },
+        getTotal(){
             this.$axios.get()
+            .then((response) => {
+                this.totalnum = response.data;    
+                }).catch(function (response) {
+                    window.console.log(response)
+                    });
+        },
+        getTable(val){
+            this.currentPage = val;
+            let form = new FormData();
+            form.append('pageNum', val)
+            form.append('pageSize', this.pagesize)
+            this.$axios.post("", form)
             .then((response) => {
                 this.tableData = response.data;    
             }).catch(function (response) {
                 window.console.log(response)
             });
         },
+        handleCurrentChange(val) {
+            this.getTable(val);
+		},
         removeUser(row){
             let form =  new FormData();
             form.append('name', row.name);
@@ -62,18 +81,6 @@ export default {
                 window.console.log(response)
             });
         },
-        handleCurrentChange(val) {
-            this.currentPage = val;
-            let form = new FormData();
-            form.append('pageNum', val)
-            form.append('pageSize', this.pagesize)
-            this.$axios.post("", form)
-            .then((response) => {
-                this.tableData = response.data;    
-            }).catch(function (response) {
-                window.console.log(response)
-            });
-		},
     },
     mounted(){
         this.getData();

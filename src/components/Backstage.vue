@@ -9,8 +9,8 @@
                     <AsideBar/>
                 </el-aside>
                 <el-main>
-                    <SearchBar ref="searchBar"/>
-                    <DataTable ref="dataTable"/>
+                    <SearchBar/>
+                    <DataTable/>
                 </el-main>
             </el-container>
             <el-footer></el-footer>
@@ -43,8 +43,6 @@ export default {
 }
 
 #Backstage > section > header{
-    /* background-color: cornflowerblue; */
-    /* background-clip:border-box; */
     background-attachment: fixed;
     background-image: url("../assets/bg01v2.jpg")
 }

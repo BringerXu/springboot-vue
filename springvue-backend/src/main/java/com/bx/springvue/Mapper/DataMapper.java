@@ -16,7 +16,17 @@ public interface DataMapper {
     @Delete("delete from user where name=#{name}")
     void deleteUserbyname(@Param("name") String name);
 
-    @Select("select * from user order by name limit #{pageNum},#{pageSize}")
-    List<UserEntity> findpart(@Param("pageNum") int pn, @Param("pageSize") int ps);
+    @Select("select * from user order by ${key} limit #{pageNum},#{pageSize}")
+    List<UserEntity> findpart(@Param("key") String k, @Param("pageNum") int pn, @Param("pageSize") int ps);
+
+    @Select({"select tablerows from tableInfo where tablename='user'"})
+    Integer getUserNum();
+
+    @Update("update tableInfo set tablerows=tablerows+1 where tablename='user'")
+    void increaseUserNum();
+
+    @Update("update tableInfo set tablerows=tablerows-1 where tablename='user'")
+    void decreaseUserNum();
+
     //Device Method
 }

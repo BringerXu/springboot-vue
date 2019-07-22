@@ -26,7 +26,7 @@ export default {
     {
         return{
             name:"",
-            password:"",
+            password:""
         }
     },
     methods:{

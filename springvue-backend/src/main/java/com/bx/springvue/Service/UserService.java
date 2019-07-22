@@ -7,4 +7,5 @@ public interface UserService {
     boolean deleteUserbyname(String name);
     String getUserpswbyname(String name);
     JSONArray findpart(int pn, int ps);
+    Integer getTotal();
 }
