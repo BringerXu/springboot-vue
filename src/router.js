@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Backstage from './components/Backstage.vue'
 import Login from './components/Login.vue'
+import error from './components/404.vue'
 
 Vue.use(Router)
 
@@ -9,14 +10,23 @@ export default new Router({
   routes: [
     {
       path:'/',
-      name: 'login',
-      component: Login
+      redirect:{name:"login"}
+    },
+    {
+      path:'/login',
+      name:'login',
+      component:Login
     },
     {
       path: '/backstage',
       name: 'backstage',
       component: Backstage
     },
+    {
+      path:'*',
+      name:'404',
+      component: error
+    }
     
     // {
     //   path: '/about',

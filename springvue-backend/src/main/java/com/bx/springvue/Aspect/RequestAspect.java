@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -23,6 +25,7 @@ public class RequestAspect {
      * 任意方法
      * 任意参数
      **/
+    Logger logger = LoggerFactory.getLogger(RequestAspect.class);
     @Pointcut("execution(public * com.bx.springvue.Controller.User.*(..))")
     public void checkRequest(){
     }
@@ -34,7 +37,7 @@ public class RequestAspect {
         HttpServletRequest request = sra.getRequest();
 //        Annotation[][] parameterAnnotations = method.getParameterAnnotations();
         if(method.getName().equals("login")) {
-            System.out.println("在首页不用检查token");
+            logger.info("在首页不用检查token");
         }else{
             String t = request.getHeader("token");
             if(TokenService.verifyToken(t)){
