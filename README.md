@@ -6,45 +6,48 @@ the rest of code in the folder is a simpler vue-cli project.
 P.S. I started to learn these two frameworks at July 11th 2019, so if you have any advice about what kinds of 
 function this project should have or which new technology I should learn for imporving it, please teach me with
 your knowledge.
-[Advice](bringerXu@protonmail.com)
+[Advice](mailto:bringerXu@protonmail.com)
 
 ## backend
-port: 8080
-Need a simple database
-default setting:
-    provider: mysql
-    database: IE
-    port: 3306
-    table: user{char(255) name, char(255) password}
-    user: root
-    password: root
+port: 8080  
+
+Need a simple database  
+
+IE:  
+
+​	{  
+
+​		port:3306,  
+
+​		user:root,  
+
+​		password:root,  
+
+​		table:  
+
+​			{  
+
+​				user{char(255) name, char(255) password}  
+
+​				tableInfo{char(255) tablename, int tablerows}
+
+​			}  
+
+​	}  
+
+```properties
+useAffectedRows=true
+```
 
 ## frontend
 port: 8081
 ### Project setup
 ```
-npm install
+1. Run backend:  
+	/root_of_project/springvue-backend/
+	IDE(IDEA, Eclipse...) run SpringvueApplication.class
+2. Run frontend:
+	/root_of_project  
+	npm run serve
+3. browse localhost:8081
 ```
-
-#### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-#### Compiles and minifies for production
-```
-npm run build
-```
-
-#### Run your tests
-```
-npm run test
-```
-
-#### Lints and fixes files
-```
-npm run lint
-```
-
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
